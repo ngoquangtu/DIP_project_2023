@@ -65,7 +65,8 @@ class Ui_MainWindow(object):
         
         self.pushButton_2.clicked.connect(lambda:self.uploadImage(MainWindow))
         self.pushButton_3.clicked.connect(lambda: self.upload_generate_image(MainWindow,self.generate_panorama_image(MainWindow)))
-        self.pushButton_4.clicked.connect(self.clearAllImage(MainWindow))
+        self.pushButton_4.clicked.connect(self.clearAllImage)
+        self.pushButton_5.clicked.connect(self.saveImage)
         QMetaObject.connectSlotsByName(MainWindow)
     # setupUi
     def uploadImage(self,MainWindow):
@@ -117,15 +118,27 @@ class Ui_MainWindow(object):
         self.label.setAlignment(Qt.AlignCenter)
         self.label.setPixmap(pixmap.scaled(self.label.size(), Qt.KeepAspectRatio))
         self.label.repaint()
-    def clearAllImage(self,MainWindow):
+    def clearAllImage(self):
         self.images.clear()
         self.image_file_paths.clear()
         for label2 in self.dynamic_buttons:
+            label2.hide()
             label2.clear()
-        self.dynamic_buttons.clear()
         self.label.clear()
-        for i in self.dynamic_buttons:
-            print(i)        
+    def saveImage(self):
+        if not self.label.pixmap():
+            self.statusbar.showMessage("No image to save.")
+            return
+        file_path, _ = QFileDialog.getSaveFileName(None, "Save Image", QDir.homePath(), "Images (*.png *.jpg *.bmp);;All Files (*)")
+
+        if file_path:
+            # Get the current displayed pixmap from the label
+            pixmap = self.label.pixmap()
+            
+            # Save the pixmap to the specified file path
+            pixmap.save(file_path)
+
+            self.statusbar.showMessage(f"Image saved to {file_path}")
     def retranslateUi(self, MainWindow):
         MainWindow.setWindowTitle(QCoreApplication.translate("MainWindow", u"MainWindow", None))
         self.pushButton_2.setText(QCoreApplication.translate("MainWindow", u"+", None))
