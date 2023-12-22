@@ -1,0 +1,87 @@
+# Qt Creator
+*.user
+*.pro.user
+*.pro.user.*
+*.creator
+*.fileList
+*.files
+*.config
+*.includes
+*.depend
+*.layout
+*.gcno
+*.gcda
+*.gconv
+
+# Qt
+build-*
+*.moc
+*.moc.cpp
+*.o
+*.obj
+*.so
+*.dylib
+*.a
+*.lib
+*.dll
+*.rcc
+*.qmlc
+*.qm
+*.qm.*
+*.ts
+*.qrc
+
+# Compiled source #
+###################
+*.com
+*.class
+*.dll
+*.exe
+*.o
+*.so
+
+# Qt Installer
+installer/ *
+
+# OS generated files #
+######################
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+Icon?
+ehthumbs.db
+Thumbs.db
+
+# Qt Creator project files #
+*.autosave
+*.qmlproject.user
+
+# CMake
+CMakeLists.txt.user
+CMakeFiles/
+CMakeCache.txt
+CMakeScripts/
+Testing/
+install_manifest.txt
+
+# Qt VS Tools
+*.vcxproj
+*.vcxproj.user
+*.vcxproj.filters
+
+# Qbs
+.qbs/
+
+# Android
+android-build/
+
+# iOS
+ios-build/
+*.mode1v3
+*.mode2v3
+*.perspectivev3
+*.pbxuser
+*.xcuserdatad
+ 
