@@ -73,6 +73,9 @@ class Ui_MainWindow(object):
         if self.x >= 10:
             self.y +=1
             self.x = 0
+        if len(self.dynamic_buttons)==0:
+            self.x=1
+            self.y=1
         file_path, _ = QFileDialog.getOpenFileName(MainWindow, "Open Image File", QDir.homePath())
         if file_path:
             self.replace = QLabel(self.centralwidget)
@@ -89,6 +92,7 @@ class Ui_MainWindow(object):
             self.image_file_paths.append(file_path)
             self.dynamic_buttons.append(self.replace)
             self.replace.show()
+            print(len(self.dynamic_buttons))
     def generate_panorama_image(self,MainWindow):
         number_of_images=len(self.image_file_paths)
         images=[]
@@ -123,7 +127,8 @@ class Ui_MainWindow(object):
         self.image_file_paths.clear()
         for label2 in self.dynamic_buttons:
             label2.hide()
-            label2.clear()
+            label2.deleteLater()  
+        self.dynamic_buttons.clear()
         self.label.clear()
     def saveImage(self):
         if not self.label.pixmap():
